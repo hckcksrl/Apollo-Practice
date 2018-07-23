@@ -1,6 +1,6 @@
 import React from 'react'
-import { Query } from "react-apollo";
-import { User_page , Profiles } from "./queries";
+import { Query, Mutation } from "react-apollo";
+import { User_page , Profiles ,Create_user } from "./queries";
 
 
 export const User_Page = () =>
@@ -8,12 +8,11 @@ export const User_Page = () =>
         {({loading , data , error}) => {
             if(loading) return 'loading'
             if(error) return 'something happened'
-            return console.log(data.allUser)
-            // return data.allUser.map(user =>
-            // <h2 key={user.user_id}>
-            //     username : {user.username} /
-            //     password : {user.password}
-            // </h2>)
+            return data.allUser.map(user =>
+            <h2 key={user.user_id}>
+                username : {user.username} /
+                password : {user.password}
+            </h2>)
         }}
     </Query>
 
@@ -35,3 +34,32 @@ export const Profile = (
             )
         }}
     </Query>
+
+export const Create_User = () => {
+    let username , password
+    return (
+        <Mutation mutation={Create_user}>
+            {(getUser , {loading , error}) => (
+                <div>
+                    <form onSubmit={e => {
+                        e.preventDefault()
+                        getUser({
+                            variables : {
+                                username : username.value,
+                                password : password.value
+                            }
+                        })
+                        username.value = "";
+                        password.value = "";
+                    }}>
+                        <input type="text" placeholder="username" ref={node => {username=node}} /><br/><br/>
+                        <input type="password" placeholder="password" ref={node => {password=node}} /><br/><br/>
+                        <button type="submit">Create User</button>
+                    </form>
+                    {loading && <p>Loading...</p>}
+                    {error && <p>Error :( Please try again )</p>}    
+                </div>
+            )}
+        </Mutation>
+    )
+}
