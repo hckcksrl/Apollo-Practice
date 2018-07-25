@@ -47,6 +47,10 @@ export const Create_Comment = () => {
                     <form onSubmit ={e => {
                         e.preventDefault()
                         getComment({
+                            refetchQueries : [{
+                                query : Comment_page
+                            }]
+                            ,
                             variables : {
                                 image_id : image_id.value,
                                 username : username.value,
