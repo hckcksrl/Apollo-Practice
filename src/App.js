@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import client from './client'
 import { ApolloProvider } from "react-apollo";
 import { HashRouter as Router , Route } from "react-router-dom";
-import {Image , User_Image , Create_Image} from './image'
+import {Image , User_Image  , Create_Image} from './image'
 import {Comment , Image_Comment, Create_Comment} from './comment'
 import {Like , Image_Like , Create_Like} from './like'
 import {Followers ,Followings , Create_Follower } from "./follow";
