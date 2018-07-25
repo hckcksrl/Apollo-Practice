@@ -1,10 +1,9 @@
-import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
+import ApolloClient from "apollo-boost";
+
 
 const client = new ApolloClient({
-    link: new HttpLink({
-        uri : "http://localhost:4000",
-    }),
-    cache : new InMemoryCache()
+    uri : "http://localhost:4000",
+    cacheControl : false
 })
 
 export default client
