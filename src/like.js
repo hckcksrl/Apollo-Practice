@@ -41,6 +41,10 @@ export const Create_Like = () => {
                     <form onSubmit={e => {
                         e.preventDefault()
                         getLike({
+                            refetchQueries : [{
+                                query : Like_page
+                            }]
+                            ,
                             variables: {
                                 image_id : image_id.value,
                                 username : username.value
