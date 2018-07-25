@@ -44,6 +44,10 @@ export const Create_User = () => {
                     <form onSubmit={e => {
                         e.preventDefault()
                         getUser({
+                            refetchQueries : [{
+                                query : User_page
+                            }]
+                            ,
                             variables : {
                                 username : username.value,
                                 password : password.value
