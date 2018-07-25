@@ -49,6 +49,10 @@ export const Create_Follower = () => {
                     <form onSubmit={ e => {
                         e.preventDefault()
                         getFollow({
+                            refetchQueries : [{
+                                query : Follower
+                            }]
+                            ,
                             variables : {
                                 from_username : from_username.value,
                                 to_username : to_username.value,
